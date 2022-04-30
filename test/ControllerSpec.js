@@ -60,6 +60,10 @@ describe('controller', function () {
 
 	it('should show entries on start-up', function () {
 		// TODO: write test
+		
+		setUpModel([]);
+		subject.setView('');
+		expect(view.render).toHaveBeenCalledWith('showEntries', []); 
 	});
 
 	describe('routing', function () {
@@ -82,24 +86,26 @@ describe('controller', function () {
 			expect(view.render).toHaveBeenCalledWith('showEntries', [todos]);
 		});
 
-		// Should should show an active entry when the filter is set to active 
-		// Should should not show a completed entry when the filter is set to active 
-
 		it('should show active entries', function () {
 			// TODO: write test
-			
-			// var todo = {title: 'my todo', completed: true};
-			// expect(todo).toBeDefined();
-			// expect(todo.completed).toEqual(false);
-			// setUpModel([todo]);
-			// subject.setView('#/active');
-			// expect(model.read).toHaveBeenCalledWith({completed: false}, jasmine.any(Function));
-			// expect(view.render).toHaveBeenCalledWith('setFilter', 'active');
-			// expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
+						
+			var todo = {completed: false};
+			setUpModel([todo]);
+			subject.setView('#/active');
+			expect(model.read).toHaveBeenCalledWith(todo, jasmine.any(Function));
+			expect(view.render).toHaveBeenCalledWith('setFilter', 'active');
+			expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
 		});
 
 		it('should show completed entries', function () {
 			// TODO: write test
+			
+			var todo = {completed: false};
+			setUpModel([todo]);
+			subject.setView('#/active');
+			expect(model.read).toHaveBeenCalledWith(todo, jasmine.any(Function));
+			expect(view.render).toHaveBeenCalledWith('setFilter', 'active');
+			expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
 		});
 	});
 
