@@ -155,6 +155,15 @@ describe('controller', function () {
 
 	it('should highlight "All" filter by default', function () {
 		// TODO: write test
+		
+		var todos = [
+			{ id: 1, title: 'todo', completed: false},
+			{ id: 2, title: 'completed todo', completed: true}
+		];
+
+		setUpModel(todos);
+		subject.setView('');
+		expect(view.render).toHaveBeenCalledWith('showEntries', todos);
 	});
 
 	it('should highlight "Active" filter when switching to active view', function () {
@@ -183,6 +192,13 @@ describe('controller', function () {
 
 		it('should update the view', function () {
 			// TODO: write test
+
+			var todo = {id: 1, title: 'my todo', completed: false};
+
+			setUpModel([todo]);
+			subject.setView('');
+			view.trigger('toggleAll', {completed: true});
+			expect(view.render).toHaveBeenCalledWith('elementComplete', {id: 1, completed: true});
 		});
 	});
 
