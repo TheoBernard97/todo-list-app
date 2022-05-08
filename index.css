@@ -1,4 +1,6 @@
 .toggle-all {
+    cursor: pointer;
+    z-index: 1;
     width: 45px;
     height: 65px;
     margin: 0;
