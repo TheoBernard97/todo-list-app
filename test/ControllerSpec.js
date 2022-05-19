@@ -101,12 +101,12 @@ describe('controller', function () {
 		it('should show completed entries', function () {
 			// TODO: write test
 			
-			var todo = {completed: false};
+			var todo = {completed: true};
 			
 			setUpModel([todo]);
-			subject.setView('#/active');
+			subject.setView('#/completed');
 			expect(model.read).toHaveBeenCalledWith(todo, jasmine.any(Function));
-			expect(view.render).toHaveBeenCalledWith('setFilter', 'active');
+			expect(view.render).toHaveBeenCalledWith('setFilter', 'completed');
 			expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
 		});
 	});
